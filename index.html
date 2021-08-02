@@ -6,7 +6,7 @@
     </head>
 
     <body onload="draw();">
-        <canvas id='canvas'></canvas>
+        <canvas id='canvas' width="500" height="500"></canvas>
     </body>
 
 
@@ -15,11 +15,94 @@
             var canvas = document.getElementById("canvas");
             var ctx = canvas.getContext("2d");
 
-            ctx.fillStyle = "rgb(200,0,0)";
-            ctx.fillRect (10, 10, 1000, 50);
+            //ctx.fillStyle = "rgb(200,0,0)";
+            //ctx.fillRect (10, 10, 300, 50);
 
-            ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
-            ctx.fillRect (30, 30, 50, 50);
+            //ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+            //ctx.fillRect (30, 30, 50, 50);
+
+            // ctx.beginPath();
+            // ctx.moveTo(100, 100);
+            // ctx.lineTo(150, 25);
+            // ctx.stroke();
+
+            // ctx.beginPath();
+            // ctx.moveTo(100, 100);
+            // ctx.quadraticCurveTo(100, 200, 150, 100);
+            // ctx.stroke();
+
+            var initX = 250;
+            var initY = 250;
+            var curX;
+            var curY;
+            var prevX;
+            var prevY;
+            var conX;
+            var conY;
+
+            var speed = 2;
+
+            ctx.moveTo(initX, initY);
+            ctx.beginPath();
+        
+            for (let i =0; i < 100; i++) {      
+                if ( i == 0 ) {                    
+                    conX = initX + speed/2;
+                    conY = initY - speed;
+                    curX = initX + speed;
+                    curY = initY;
+                    ctx.quadraticCurveTo(conX, conY, curX, curY);
+                    ctx.stroke();
+                    prevX = curX;
+                    prevY = curY;
+                } else {                    
+                    if ( i%4 == 1 ) {                        
+                        moveTo(prevX, prevY);
+                        conX = prevX;
+                        conY = prevY + i * speed;
+                        curX = prevX - ((i-1) * speed);
+                        curY = prevY + i * speed;
+                        ctx.quadraticCurveTo(conX, conY, curX, curY);
+                        ctx.stroke();
+                        prevX = curX;
+                        prevY = curY;
+                    } else if ( i%4 == 2 ) {
+                        moveTo(prevX, prevY);
+                        conX = prevX - i * speed;
+                        conY = prevY;
+                        curX = prevX - i * speed;
+                        curY = prevY - ((i-1) * speed);
+                        ctx.quadraticCurveTo(conX, conY, curX, curY);
+                        ctx.stroke();
+                        prevX = curX;
+                        prevY = curY;
+                    } else if ( i%4 == 3 ) {
+                        moveTo(prevX, prevY);
+                        conX = prevX;
+                        conY = prevY - i * speed;
+                        curX = prevX + ((i-1) * speed);
+                        curY = prevY - i * speed;
+                        ctx.quadraticCurveTo(conX, conY, curX, curY);
+                        ctx.stroke();
+                        prevX = curX;
+                        prevY = curY;
+                    } else if ( i%4 == 0 ) {
+                        moveTo(prevX, prevY);
+                        conX = prevX + i * speed;
+                        conY = prevY;
+                        curX = prevX + i * speed;
+                        curY = prevY + ((i-1) * speed);                        
+                        ctx.quadraticCurveTo(conX, conY, curX, curY);
+                        ctx.stroke();
+                        prevX = curX;
+                        prevY = curY;
+                    }
+                }
+                
+
+
+
+            }
         }
     </script>
 
