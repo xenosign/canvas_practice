@@ -5,31 +5,15 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
-    <body onload="draw();">
+    <body onload="drawArc();">
         <canvas id='canvas' width="500" height="500"></canvas>
     </body>
 
 
     <script>
-        function draw() {
+        function drawTornado() {
             var canvas = document.getElementById("canvas");
             var ctx = canvas.getContext("2d");
-
-            //ctx.fillStyle = "rgb(200,0,0)";
-            //ctx.fillRect (10, 10, 300, 50);
-
-            //ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
-            //ctx.fillRect (30, 30, 50, 50);
-
-            // ctx.beginPath();
-            // ctx.moveTo(100, 100);
-            // ctx.lineTo(150, 25);
-            // ctx.stroke();
-
-            // ctx.beginPath();
-            // ctx.moveTo(100, 100);
-            // ctx.quadraticCurveTo(100, 200, 150, 100);
-            // ctx.stroke();
 
             var initX = 250;
             var initY = 250;
@@ -98,11 +82,40 @@
                         prevY = curY;
                     }
                 }
-                
+            }            
+            //ctx.fillStyle = "rgb(200,0,0)";
+            //ctx.fillRect (10, 10, 300, 50);
 
+            //ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+            //ctx.fillRect (30, 30, 50, 50);
 
+            // ctx.beginPath();
+            // ctx.moveTo(100, 100);
+            // ctx.lineTo(150, 25);
+            // ctx.stroke();
 
+            // ctx.beginPath();
+            // ctx.moveTo(100, 100);
+            // ctx.quadraticCurveTo(100, 200, 150, 100);
+            // ctx.stroke();
+        }
+
+        function drawArc() {
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            
+            ctx.beginPath();            
+
+            for(let i = 0; i < 100; i++) {
+                ctx.clearRect(90, i-5, 10, 10);    
+                ctx.arc(100, i, 5, 0, 2 * Math.PI, false);
+                ctx.lineWidth = 10;
+                ctx.stroke();
             }
+
+            
+
+            
         }
     </script>
 
